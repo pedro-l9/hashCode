@@ -11,16 +11,16 @@ function getData(fileName) {
 
   const [_, __, dayCount] = lines[0].split(" ");
 
-  const bookScores = lines[1].split(" ").map(BigInt);
+  const bookScores = lines[1].split(" ").map(Number);
 
   const libs = [];
   for (i = 2; lines[i].length > 0; i += 2) {
-    const [___, signup, cap] = lines[i].split(" ").map(BigInt);
+    const [___, signup, cap] = lines[i].split(" ").map(Number);
     const books = lines[i + 1].split(" ");
 
     const scoreSum = books.reduce(
       (acc, bookId) => (acc += bookScores[bookId]),
-      BigInt(0)
+      0
     );
     const libScore = (scoreSum * cap) / signup;
 
