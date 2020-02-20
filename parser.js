@@ -1,5 +1,8 @@
 const fs = require("fs");
 
+const INPUT_FILE = process.argv[2];
+const FILE_NAME = INPUT_FILE.substring(INPUT_FILE.lastIndexOf("\\") + 1);
+
 function getData(fileName) {
   const lines = fs
     .readFileSync(fileName, "utf8")
@@ -48,7 +51,7 @@ function buildOutput(libs) {
   }
 
   fs.writeFile(
-    "output.txt",
+    `./outputs/output-${FILE_NAME}`,
     lines.join(String.fromCharCode(10)),
     "utf8",
     err => {
