@@ -1,17 +1,13 @@
 function sortScore(bookScores, books){
-    return books.sort((a, b) => {
-        if(bookScores[parseInt(a)] > bookScores[parseInt(b)]) return -1;
-        if(bookScores[parseInt(a)] < bookScores[parseInt(b)]) return 1;
-        return 0;
-    });
+    return books.sort((a, b) => bookScores[parseInt(b)] - bookScores[parseInt(a)]);
 }
 
 function sortLibrary(libs){
-    return libs.sort((a, b) => {
-        if(a.libScore > b.libScore) return -1;
-        if(a.libScore < b.libScore) return 1;
-        return 0;
-    });
+    return libs.sort((a, b) => b.libScore - a.libScore);
+}
+
+function removeDuplicates(libs){
+
 }
 
 exports.sortScore = sortScore;
