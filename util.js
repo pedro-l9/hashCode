@@ -5,7 +5,12 @@ const sortBooksByScore = bookScores => books => {
 };
 
 function sortLibs(libs) {
-  return libs.sort((a, b) => b.libScore - a.libScore);
+  return libs.sort((a, b) => {
+    const signupOrder = a.signup - b.signup;
+
+    if (signupOrder === 0) return b.scoreSum * b.cap - a.scoreSum * a.cap;
+    else return signupOrder;
+  });
 }
 
 exports.sortBooksByScore = sortBooksByScore;

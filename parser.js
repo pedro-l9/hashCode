@@ -22,16 +22,13 @@ function getData(fileName) {
       (acc, bookId) => (acc += bookScores[bookId]),
       0
     );
-    const libScore = (scoreSum * cap) / signup;
-    const totalProcessingTime = signup + books.length / cap;
 
     libs.push({
       signup,
       cap,
       books,
-      libScore,
       libId: i / 2 - 1,
-      totalProcessingTime
+      scoreSum
     });
   }
 

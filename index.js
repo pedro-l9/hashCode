@@ -7,12 +7,13 @@ try {
   let { libs, bookScores } = getData(INPUT_FILE);
   const sortBooks = sortBooksByScore(bookScores);
 
-  // libs = sortLibs(libs);
-  // libs = libs.map(lib => ({ books: sortBooks(lib.books), ...lib }));
+  libs = sortLibs(libs);
+  libs = libs.map(lib => ({
+    books: sortBooks(lib.books),
+    ...lib
+  }));
 
-  // buildOutput(libs);
-
-  console.log(libs.reduce((acc, lib) => (acc += lib.totalProcessingTime), 0));
+  buildOutput(libs);
 } catch (err) {
   console.error(err);
 }
