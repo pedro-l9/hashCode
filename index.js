@@ -9,7 +9,6 @@ try {
 
   libs = sortLibs(libs);
   libs = libs.map(lib => ({ books: sortBooks(lib.books), ...lib }));
-  libs = removeDuplicates(libs);
   buildOutput(libs);
 } catch (err) {
   console.error(err);
