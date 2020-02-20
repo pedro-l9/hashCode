@@ -23,13 +23,15 @@ function getData(fileName) {
       0
     );
     const libScore = (scoreSum * cap) / signup;
+    const totalProcessingTime = signup + books.length / cap;
 
     libs.push({
       signup,
       cap,
       books,
       libScore,
-      libId: i / 2 - 1
+      libId: i / 2 - 1,
+      totalProcessingTime
     });
   }
 
