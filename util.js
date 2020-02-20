@@ -10,4 +10,3 @@ function sortLibs(libs) {
 
 exports.sortScore = sortScore;
 exports.sortLibs = sortLibs;
-exports.removeDuplicates = removeDuplicates;
