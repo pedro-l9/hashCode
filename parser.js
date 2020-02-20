@@ -6,30 +6,33 @@ function getData(fileName) {
     .toString()
     .split(String.fromCharCode(10));
 
-  const [bookCount, libCount, dayCount] = lines[0].split(" ");
+  const [_, __, dayCount] = lines[0].split(" ");
 
   const bookScores = lines[1].split(" ");
 
   const libs = [];
   for (i = 2; lines[i].length > 0; i += 2) {
-    const [bookCnt, signup, cap] = lines[i].split(" ");
+    const [___, signup, cap] = lines[i].split(" ");
     const books = lines[i + 1].split(" ");
 
-    const scoreSum = books.reduce((acc, bookId) => (acc += bookScores[bookId]));
+    const scoreSum = books.reduce(
+      (acc, bookId) => (acc += bookScores[bookId]),
+      BigInt(0)
+    );
     const libScore = (scoreSum * cap) / signup;
 
+    // console.log({ scoreSum, cap, signup });
+
     libs.push({
-      bookCnt,
       signup,
       cap,
       books,
-      libScore
+      libScore,
+      libId: i / 2 - 1
     });
   }
 
   return {
-    bookCount,
-    libCount,
     dayCount,
     bookScores,
     libs
@@ -39,13 +42,17 @@ function getData(fileName) {
 function buildOutput(libs) {
   const lines = [`${libs.length}`];
 
+  for (lib of libs) {
+    lines.push(`${lib.libId} ${lib.books.length}`);
+    lines.push(lib.books.join(" "));
+  }
+
   fs.writeFile(
     "output.txt",
     lines.join(String.fromCharCode(10)),
     "utf8",
     err => {
       if (err) return console.log(err);
-      console.log("Hello World > helloworld.txt");
     }
   );
 }
