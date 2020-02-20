@@ -6,4 +6,13 @@ function sortScore(bookScores, books){
     });
 }
 
+function sortLibrary(libs){
+    return libs.sort((a, b) => {
+        if(a.libScore > b.libScore) return -1;
+        if(a.libScore < b.libScore) return 1;
+        return 0;
+    });
+}
+
 exports.sortScore = sortScore;
+exports.sortLibrary = sortLibrary;
