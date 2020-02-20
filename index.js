@@ -1,18 +1,16 @@
-const { sortScore } = require("./util.js");
+const { sortScore, sortLibs, removeDuplicates } = require("./util.js");
 const { getData, buildOutput } = require("./parser.js");
 
 const INPUT_FILE = process.argv[2];
 
 try {
-  const data = getData(INPUT_FILE);
+  let { libs, bookScores } = getData(INPUT_FILE);
+  const sortBooks = sortScore(bookScores);
 
-  data.libs = data.libs.sort((a, b) => b.libScore - a.libScore);
-
-  console.log(data);
-  console.log(data.libs[1].books);
-  const booksSorted = sortScore(data.bookScores, data.libs[1].books);
-  console.log(booksSorted);
-  buildOutput(data.libs);
+  libs = sortLibs(libs);
+  libs = libs.map(lib => ({ books: sortBooks(lib.books), ...lib }));
+  libs = removeDuplicates(libs);
+  buildOutput(libs);
 } catch (err) {
   console.error(err);
 }

@@ -24,8 +24,6 @@ function getData(fileName) {
     );
     const libScore = (scoreSum * cap) / signup;
 
-    // console.log({ libScore });
-
     libs.push({
       signup,
       cap,
